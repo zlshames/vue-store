@@ -19,6 +19,12 @@
         <div class="content">
           <p>{{ item.description  }}</p>
           <small>{{ item.post_date }}</small>
+
+          <div class="tag-container">
+            <span v-for="tag in item.tags" class="tag">
+              {{ tag }}
+            </span>
+          </div>
         </div>
       </div>
       <footer class="card-footer">
@@ -36,6 +42,18 @@
 </script>
 
 <style scoped>
+  .tag-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .tag-container>.tag {
+    margin: 2px;
+    user-select: none;
+  }
+  
   .item-container {
     display: flex;
     flex-direction: row;
@@ -61,6 +79,7 @@
     margin-right: 20px;
     margin-bottom: 20px;
     border-radius: 3px;
+    align-self: flex-start;
   }
 
   .card-content {

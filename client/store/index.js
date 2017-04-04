@@ -33,6 +33,19 @@ const actions = {
       items = items.filter(item => Number(item.price) <= filters.price)
     }
 
+    // Filter by tags
+    if (filters.tags.length > 0) {
+      items = items.filter(item => {
+        for (let i = 0; i < filters.tags.length; i++) {
+          if (item.tags.indexOf(filters.tags[i]) === -1) {
+            return false
+          }
+        }
+
+        return true
+      })
+    }
+
     commit('SET_FILTERED_ITEMS', items)
   }
 }
@@ -40,6 +53,9 @@ const actions = {
 const getters = {
   items(state) {
     return state.filteredItems
+  },
+  allItems(state) {
+    return state.items
   }
 }
 

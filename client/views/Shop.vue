@@ -42,7 +42,8 @@ export default {
         description: 'Description of item 1',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '40',
-        post_date: 'April 4th, 2017'
+        post_date: 'April 4th, 2017',
+        tags: ['sale', 'blue', 'large']
       },
       {
         id: 'ABC',
@@ -50,7 +51,8 @@ export default {
         description: 'Description of item 2',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '10',
-        post_date: 'April 4th, 2017'
+        post_date: 'April 4th, 2017',
+        tags: ['red', 'medium']
       },
       {
         id: 'DEF',
@@ -58,7 +60,8 @@ export default {
         description: 'Description of item 3',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '50',
-        post_date: 'April 4th, 2017'
+        post_date: 'April 4th, 2017',
+        tags: ['sale', 'clear', 'small', 'wide', 'new']
       },
       {
         id: 'GHI',
@@ -66,7 +69,8 @@ export default {
         description: 'Description of item 4',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '80',
-        post_date: 'April 4th, 2017'
+        post_date: 'April 4th, 2017',
+        tags: ['extra small']
       },
       {
         id: 'JKL',
@@ -74,7 +78,8 @@ export default {
         description: 'Description of item 5',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '25',
-        post_date: 'April 4th, 2017'
+        post_date: 'April 4th, 2017',
+        tags: ['wide']
       },
       {
         id: 'MNO',
@@ -82,7 +87,8 @@ export default {
         description: 'Description of item 6',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '5',
-        post_date: 'April 4th, 2017'
+        post_date: 'April 4th, 2017',
+        tags: ['light']
       },
       {
         id: 'PQR',
@@ -90,7 +96,8 @@ export default {
         description: 'Description of item 7',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '75',
-        post_date: 'April 4th, 2017'
+        post_date: 'April 4th, 2017',
+        tags: ['heavy']
       },
       {
         id: 'STU',
@@ -98,7 +105,8 @@ export default {
         description: 'Description of item 8',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '100',
-        post_date: 'April 4th, 2017'
+        post_date: 'April 4th, 2017',
+        tags: []
       },
     ])
   }
