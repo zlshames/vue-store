@@ -1,11 +1,16 @@
 <template>
   <div id="app">
+    <alert-list />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+  import AlertList from 'components/AlertList'
   export default {
+    components: {
+      AlertList
+    },
     created() {
       this.$store.dispatch('loadCart')
       this.setPage()

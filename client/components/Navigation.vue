@@ -38,10 +38,10 @@
       <span></span>
     </span>
 
-    <div class="nav-right nav-menu" ref="menu">
+    <div class="nav-right nav-menu" ref="menu" @click="closeMenu">
       <router-link
         :class="['nav-item is-tab', (page === 'about') ? 'is-active' : '']"
-        :to="{ name: 'about' }" @click.native="closeMenu">
+        :to="{ name: 'about' }" >
 
         <span class="icon">
           <i class="fa fa-info"></i>
@@ -51,7 +51,7 @@
       </router-link>
       <router-link
       :class="['nav-item is-tab', (page === 'faq') ? 'is-active' : '']"
-      :to="{ name: 'faq' }" @click.native="closeMenu">
+      :to="{ name: 'faq' }">
 
         <span class="icon">
           <i class="fa fa-question"></i>
@@ -61,7 +61,7 @@
       </router-link>
       <router-link
         :class="['nav-item is-tab', (page === 'contact') ? 'is-active' : '']"
-        :to="{ name: 'contact' }" @click.native="closeMenu">
+        :to="{ name: 'contact' }">
 
         <span class="icon">
           <i class="fa fa-envelope"></i>
@@ -145,20 +145,6 @@
     /* Mobile */
     .cart-popover {
       width: 90%;
-    }
-  }
-
-  .nav-right.nav-menu.is-active {
-    animation: slide-down-nav 250ms ease-in-out;
-    animation-fill-mode: forwards;
-  }
-
-  @keyframes slide-down-nav {
-    0% {
-      height: 0%;
-    }
-    100% {
-      height: 100%;
     }
   }
 </style>

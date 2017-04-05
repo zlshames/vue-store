@@ -9,7 +9,8 @@ const state = {
   filteredItems: [],
   cart: [],
   cartVisible: false,
-  currentPage: 'shop'
+  currentPage: 'shop',
+  alerts: []
 }
 
 const mutations = {
@@ -31,6 +32,9 @@ const mutations = {
   },
   SET_CURRENT_PAGE (state, page) {
     state.currentPage = page
+  },
+  SET_ALERTS (state, alerts) {
+    state.alerts = alerts
   }
 }
 
@@ -46,7 +50,7 @@ const actions = {
 
     commit('SET_CART', cart)
   },
-  addToCart ({ commit }, item) {
+  addToCart (ctx, item) {
     const cart = state.cart
     const newItem = Helpers.transformObj(item, ['id', 'name', 'description', 'image', 'price'])
 
@@ -59,7 +63,14 @@ const actions = {
       }
     }
 
-    if (found) return
+    if (found) {
+      ctx.dispatch('addAlert', {
+        type: 'is-warning',
+        message: 'This item is already in your cart!'
+      })
+
+      return
+    }
 
     // Add item to cart
     cart.push(newItem)
@@ -69,7 +80,7 @@ const actions = {
       localStorage.setItem('cart', JSON.stringify(cart))
     }, 0)
 
-    commit('SET_CART', cart)
+    ctx.commit('SET_CART', cart)
   },
   removeFromCart ({ commit }, id) {
     const cart = state.cart
@@ -113,6 +124,27 @@ const actions = {
     }
 
     commit('SET_FILTERED_ITEMS', items)
+  },
+  addAlert ({ commit }, alert) {
+    const alerts = state.alerts
+    alerts.push({
+      id: Math.floor((Math.random() * 1000) + 1),
+      type: alert.type,
+      message: alert.message
+    })
+
+    commit('SET_ALERTS', alerts)
+  },
+  removeAlert ({ commit }, id) {
+    let alerts = state.alerts
+    for (let i = 0; i < alerts.length; i++) {
+      if (alerts[i].id === id) {
+        alerts.splice(i, 1)
+        break;
+      }
+    }
+
+    commit('SET_ALERTS', alerts)
   }
 }
 
@@ -131,6 +163,9 @@ const getters = {
   },
   currentPage(state) {
     return state.currentPage
+  },
+  alerts(state) {
+    return state.alerts
   }
 }
 
