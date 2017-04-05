@@ -73,8 +73,8 @@
   }
 
   .card {
-    width: 250px;
-    margin-left: 20px;
+    min-width: 250px;
+    max-width: 250px;
     margin-right: 20px;
     margin-bottom: 20px;
     border-radius: 3px;
@@ -110,7 +110,8 @@
   @media only screen and (max-width: 768px) {
     /* Mobile */
     .card {
-      width: 90%;
+      width: 100%;
+      max-width: 100%;
     }
   }
 </style>

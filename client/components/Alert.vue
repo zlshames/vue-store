@@ -34,4 +34,11 @@
     animation-fill-mode: both;
     animation-name: fadeIn;
   }
+
+  @media only screen and (max-width: 768px) {
+    /* Mobile */
+    .notification {
+      width: 90%;
+    }
+  }
 </style>

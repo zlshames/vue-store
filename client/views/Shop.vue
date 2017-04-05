@@ -116,11 +116,12 @@ export default {
 <style scoped>
   .list-container {
     width: 100%;
+    padding-left: 20px;
   }
 
   .filter-container {
     min-width: 250px;
-    width: 30%; 
+    width: 30%;
     max-width: 300px;
   }
 
@@ -134,13 +135,13 @@ export default {
   @media only screen and (max-width: 768px) {
     /* Mobile */
     .filter-container {
-      width: 90%;
-      max-width: 365px;
+      width: 100%;
+      max-width: 100%;
       margin-bottom: 20px;
     }
 
     .list-container {
-      width: 90%;
+      padding-left: 0;
     }
 
     .body-container {

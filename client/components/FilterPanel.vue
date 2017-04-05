@@ -1,47 +1,51 @@
 <template>
   <nav class="panel">
-    <p class="panel-heading">
-      Filters
-    </p>
-    <div class="panel-block">
-      <p class="control has-icon">
-        <input v-model="searchTxt" class="input is-small" type="text" placeholder="Search">
-        <span class="icon is-small">
-          <i class="fa fa-search"></i>
-        </span>
-      </p>
+    <div class="panel-heading expantion-container">
+      <p>Filters:</p>
+      <p><a @click="togglePanel" class="button is-small">{{ (showPanel) ? 'hide' : 'show' }}</a></p>
     </div>
-
-    <a class="panel-block no-bottom-border">
-      <span class="panel-icon">
-        <i class="fa fa-sort-numeric-asc"></i>
-      </span>
-      Max Price:
-    </a>
-    <label class="panel-block">
-      <slider type="success" size="medium" :value="priceValue" :max="100" :step="1" is-fullwidth @change="updateMaxPrice"></slider>
-      <label>$</label>
-      <input class="input slider-text" type="number" v-model="priceTxt" min="0" max="100" number />
-    </label>
-
-    <a class="panel-block no-bottom-border">
-      <span class="panel-icon">
-        <i class="fa fa-tags"></i>
-      </span>
-      Tags: <small style="margin-left: 10px; margin-top: 2px;">(click to filter)</small>
-    </a>
-    <label class="panel-block">
-      <div class="tag-container" ref="tagList">
-        <span v-for="tag in getTags" class="tag" :name="tag" @click="toggleTag">
-          {{ tag }}
-        </span>
+    <div v-if="showPanel">
+      <div class="panel-block">
+        <p class="control has-icon">
+          <input v-model="searchTxt" class="input is-small" type="text" placeholder="Search">
+          <span class="icon is-small">
+            <i class="fa fa-search"></i>
+          </span>
+        </p>
       </div>
-    </label>
 
-    <div class="panel-block">
-      <button @click="resetFilter" class="button is-primary is-outlined is-fullwidth">
-        Reset all filters
-      </button>
+
+      <a class="panel-block no-bottom-border">
+        <span class="panel-icon">
+          <i class="fa fa-sort-numeric-asc"></i>
+        </span>
+        Max Price:
+      </a>
+      <label class="panel-block">
+        <slider type="success" size="medium" :value="priceValue" :max="100" :step="1" is-fullwidth @change="updateMaxPrice"></slider>
+        <label>$</label>
+        <input class="input slider-text" type="number" v-model="priceTxt" min="0" max="100" number />
+      </label>
+
+      <a class="panel-block no-bottom-border">
+        <span class="panel-icon">
+          <i class="fa fa-tags"></i>
+        </span>
+        Tags: <small style="margin-left: 10px; margin-top: 2px;">(click to filter)</small>
+      </a>
+      <label class="panel-block">
+        <div class="tag-container" ref="tagList">
+          <span v-for="tag in getTags" class="tag" :name="tag" @click="toggleTag">
+            {{ tag }}
+          </span>
+        </div>
+      </label>
+
+      <div class="panel-block">
+        <button @click="resetFilter" class="button is-primary is-outlined is-fullwidth">
+          Reset all filters
+        </button>
+      </div>
     </div>
   </nav>
 </template>
@@ -53,13 +57,24 @@
     components: { Slider },
     data() {
       return {
+        showPanel: true,
         searchTxt: '',
         priceTxt: '0',
         priceValue: 0,
         activeTags: []
       }
     },
+    created() {
+      if (this.isMobile) {
+        this.showPanel = false
+      } else {
+        this.showPanel = true
+      }
+    },
     computed: {
+      isMobile() {
+        return window.innerWidth < 768
+      },
       getTags() {
         const items = this.$store.getters.allItems
         let tags = []
@@ -96,6 +111,9 @@
       }
     },
     methods: {
+      togglePanel() {
+        this.showPanel = !this.showPanel
+      },
       toggleTag(e) {
         const name = e.target.getAttribute("name")
 
@@ -138,11 +156,17 @@
 </script>
 
 <style scoped>
+  .expantion-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .tag-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
   .tag-container>.tag {

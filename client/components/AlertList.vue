@@ -24,14 +24,14 @@
 
 <style scoped>
   .alerts-container {
-    position: absolute;
+    position: fixed;
     width: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    margin-top: 2em;
+    margin-top: 0.5em;
     z-index: 9999;
   }
 </style>
