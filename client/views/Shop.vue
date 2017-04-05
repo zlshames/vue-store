@@ -2,7 +2,7 @@
   <div class="page">
     <el-nav />
 
-    <div class="body-container">
+    <div class="body-container" @click="$store.commit('SET_CART_VISIBLE', false)">
       <div class="filter-container">
         <filter-panel />
       </div>
@@ -48,7 +48,7 @@ export default {
       {
         id: 'ABC',
         name: 'Item 2',
-        description: 'Description of item 2',
+        description: 'This is a long ass description of an item. The item is an antique and is from the 1800s. It is made with pure diamond and is unbreakable. It is amazing that it is only $10',
         image: 'http://bulma.io/images/placeholders/1280x960.png',
         price: '10',
         post_date: 'April 4th, 2017',
@@ -109,6 +109,11 @@ export default {
         tags: []
       },
     ])
+  },
+  methods: {
+    closeCart() {
+      console.log("HERE")
+    }
   }
 }
 </script>

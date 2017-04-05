@@ -28,7 +28,7 @@
       <span class="panel-icon">
         <i class="fa fa-tags"></i>
       </span>
-      Tags:
+      Tags: <small style="margin-left: 10px; margin-top: 2px;">(click to filter)</small>
     </a>
     <label class="panel-block">
       <div class="tag-container" ref="tagList">
@@ -151,12 +151,10 @@
   }
 
   .input.slider-text {
-    width: 60px;
+    width: 85px;
     margin-left: 5px;
-  }
-
-  .control.has-icon {
-    z-index: -1;
+    font-size: 14px;
+    overflow: hidden;
   }
 
   .panel-block > label {

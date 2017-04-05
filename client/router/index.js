@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Shop from '../views/Shop'
+import About from '../views/About'
+import Faq from '../views/Faq'
+import Contact from '../views/Contact'
 
 Vue.use(Router)
 
@@ -14,17 +17,17 @@ export default new Router({
     },
     {
       path: '/about',
-      component: Shop,
+      component: About,
       name: 'about'
     },
     {
       path: '/faq',
-      component: Shop,
+      component: Faq,
       name: 'faq'
     },
     {
       path: '/contact',
-      component: Shop,
+      component: Contact,
       name: 'contact'
     }
   ]

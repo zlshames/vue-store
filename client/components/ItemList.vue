@@ -1,121 +1,52 @@
 <template>
   <div class="item-container">
-    <div class="card" v-for="item in items">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img :src="item.image" alt="Image">
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <div class="item-header">
-              <p class="title">{{ item.name }}</p>
-              <span class="tag is-success is-medium">$ {{item.price}}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="content">
-          <p>{{ item.description  }}</p>
-          <small>{{ item.post_date }}</small>
-
-          <div class="tag-container">
-            <span v-for="tag in item.tags" class="tag">
-              {{ tag }}
-            </span>
-          </div>
-        </div>
-      </div>
-      <footer class="card-footer">
-        <a class="card-footer-item">More Details</a>
-        <a class="card-footer-item">Add to Cart</a>
-      </footer>
+    <div v-for="item in items" class="for-mobile">
+      <item :item="item" :toggleModal="toggleModal" />
+      <item-modal :item="item" :ref="`modal${ item.id }`" :toggleModal="toggleModal" />
     </div>
   </div>
 </template>
 
 <script>
+  import Item from './Item'
+  import ItemModal from './ItemModal'
+
   export default {
-    props: ['items']
+    props: ['items'],
+    components: {
+      Item, ItemModal
+    },
+    methods: {
+      toggleModal(id) {
+        const modal = this.$refs['modal' + id][0].$el
+
+        if (modal.className.indexOf(' is-active') > -1) {
+          modal.className = modal.className.replace(' is-active', '')
+        } else {
+          modal.className += ' is-active'
+        }
+      }
+    }
   }
 </script>
 
 <style scoped>
-  .tag-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .tag-container>.tag {
-    margin: 2px;
-    user-select: none;
-  }
-  
   .item-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .item-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: flex-start;
-  }
-
-  .item-header > .tag {
-    margin-top: 3px;
-  }
-
-  .card {
-    width: 250px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    border-radius: 3px;
-    align-self: flex-start;
-  }
-
-  .card-content {
-    padding: 0.5em;
-    padding-bottom: 0.2em;
-  }
-
-  .card-content > .media {
-    margin-bottom: 0;
-  }
-
-  img {
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
+    flex-wrap: wrap;
   }
 
   @media only screen and (max-width: 768px) {
     /* Mobile */
-    .card {
-      width: 90%;
-    }
-
     .item-container {
       justify-content: center;
     }
-  }
 
-  .content > small {
-    font-size: 12px;
-  }
-
-  .content > p {
-    font-size: 14px;
-  }
-
-  .card-footer {
-    font-size: 16px;
+    .for-mobile {
+      width: 100%;
+    }
   }
 </style>

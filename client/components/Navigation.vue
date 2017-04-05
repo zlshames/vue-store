@@ -20,8 +20,16 @@
         </span>
 
         Cart
+        <span
+          v-if="$store.getters.cart.length > 0"
+          class="tag is-danger is-small cart-count">{{ $store.getters.cart.length }}</span>
       </a>
-      <Cart v-if="showCart" class="cart-popover" :offset="cartOffset" :style="cartPosition" />
+      <Cart
+        v-if="$store.getters.cartVisible"
+        class="cart-popover"
+        :offset="cartOffset"
+        :style="cartPosition"
+      />
     </div>
 
     <span class="nav-toggle" @click="toggleMenu">
@@ -67,14 +75,13 @@
 
 <script>
   import Cart from 'components/CartPopover'
+
   export default {
     components: {
       Cart
     },
     data() {
       return {
-        page: 'shop',
-        showCart: false,
         cartPosition: {
           top: 0,
           left: 0
@@ -82,17 +89,12 @@
         cartOffset: '10px'
       }
     },
-    watch: {
-      '$route': function() {
-        this.getPage()
+    computed: {
+      page() {
+        return this.$store.getters.currentPage
       }
     },
     methods: {
-      getPage() {
-        if (this.$route.matched.length > 0) {
-          this.page = this.$route.matched[0].name
-        }
-      },
       toggleMenu() {
         if (this.$refs.menu.className.indexOf('is-active') > -1) {
           this.closeMenu()
@@ -101,7 +103,9 @@
         }
       },
       closeMenu() {
-        this.$refs.menu.className = this.$refs.menu.className.replace(' is-active', '')
+        if (this.$refs.menu) {
+          this.$refs.menu.className = this.$refs.menu.className.replace(' is-active', '')
+        }
       },
       toggleCart() {
         const rect = this.$refs.cartTab.getBoundingClientRect()
@@ -111,13 +115,19 @@
           left: (window.innerWidth < 768) ? ((rect.left - 210) + 'px') : ((rect.left - 100) + 'px')
         }
 
-        this.showCart = !this.showCart
+        this.$store.commit('SET_CART_VISIBLE', !this.$store.getters.cartVisible)
       }
     }
   }
 </script>
 
 <style scoped>
+  .cart-count {
+    margin-top: -15px;
+    margin-left: 5px !important;
+    height: 18px;
+  }
+
   .nav-item {
     user-select: none;
   }
