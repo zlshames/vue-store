@@ -33,6 +33,7 @@
     animation-duration: 0.5s;
     animation-fill-mode: both;
     animation-name: fadeIn;
+    pointer-events: all;
   }
 
   @media only screen and (max-width: 768px) {

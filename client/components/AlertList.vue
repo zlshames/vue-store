@@ -26,6 +26,7 @@
   .alerts-container {
     position: fixed;
     width: 100%;
+    pointer-events: none;
 
     display: flex;
     flex-direction: column;

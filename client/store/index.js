@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Helpers from '../util/Helpers'
+import shortid from 'shortid'
 
 Vue.use(Vuex)
 
@@ -127,8 +128,21 @@ const actions = {
   },
   addAlert ({ commit }, alert) {
     const alerts = state.alerts
+    
+    let found = false
+    for (let i = 0; i < alerts.length; i++) {
+      if (alerts[i].message === alert.message) {
+        found = true
+        break;
+      }
+    }
+    
+    if (found) return
+    
+    const id = shortid.generate()
+    
     alerts.push({
-      id: Math.floor((Math.random() * 1000) + 1),
+      id: id,
       type: alert.type,
       message: alert.message
     })
