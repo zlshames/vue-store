@@ -10,7 +10,7 @@ const LogPlugin = require('./log-plugin')
 
 const app = express()
 
-const port = config.port
+const port = process.env.PORT || config.port
 webpackConfig.entry.client = [
   `webpack-hot-middleware/client?reload=true`,
   webpackConfig.entry.client
