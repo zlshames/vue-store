@@ -109,22 +109,18 @@ export default {
         tags: []
       },
     ])
-  },
-  methods: {
-    closeCart() {
-      console.log("HERE")
-    }
   }
 }
 </script>
 
 <style scoped>
   .list-container {
-    width: 70%;
+    width: 100%;
   }
 
   .filter-container {
-    width: 30%;
+    min-width: 250px;
+    width: 30%; 
     max-width: 300px;
   }
 
