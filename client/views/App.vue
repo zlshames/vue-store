@@ -32,14 +32,19 @@
 </script>
 
 <style>
-body {
-  margin: 0;
-  font-size: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont,
-               'avenir next', avenir,
-               helvetica, 'helvetica neue',
-               Ubuntu,
-               'segoe ui', arial,
-               sans-serif;
-}
+  body {
+    margin: 0;
+    font-size: 2rem;
+    font-family: -apple-system, BlinkMacSystemFont,
+                 'avenir next', avenir,
+                 helvetica, 'helvetica neue',
+                 Ubuntu,
+                 'segoe ui', arial,
+                 sans-serif;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 </style>

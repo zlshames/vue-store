@@ -164,11 +164,11 @@
     align-self: center;
     margin-left: -4em;
   }
-  
+
   .control.has-icon .icon {
-    z-index: 0;  
+    z-index: 0;
   }
-  
+
   .expantion-container {
     display: flex;
     flex-direction: row;
@@ -206,7 +206,13 @@
   a.panel-block:hover, label.panel-block:hover {
     background-color: inherit;
   }
-  
+
+  .panel-block {
+    animation-duration: 0.4s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+  }
+
   @media only screen and (max-width: 768px) {
     /* Mobile */
     .found {

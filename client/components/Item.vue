@@ -19,8 +19,8 @@
       <div class="content">
         <p>
           {{
-            (item.description.length > 100) ?
-            item.description.substring(0, 100) + '...' :
+            (item.description.length > 70) ?
+            item.description.substring(0, 70) + '...' :
             item.description
           }}
         </p>

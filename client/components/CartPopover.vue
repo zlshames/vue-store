@@ -141,6 +141,10 @@
     -webkit-box-shadow: 1px 1px 16px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 1px 16px -4px rgba(0,0,0,0.75);
     box-shadow: 1px 1px 16px -4px rgba(0,0,0,0.75);
+
+    animation-duration: 0.4s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
   }
 
   @media only screen and (max-width: 768px) {

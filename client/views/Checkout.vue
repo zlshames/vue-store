@@ -16,9 +16,10 @@
               </header>
               <div class="card-content">
                 <div class="content">
-                  {{ item.description }}
-                  <br>
-                  <small>{{ item.post_date }}</small>
+                  <figure class="image">
+                    <img :src="item.image" alt="Image">
+                  </figure>
+                  <p>{{ item.description }}</p>
                 </div>
               </div>
               <footer class="card-footer">
@@ -61,6 +62,20 @@ export default {
 </script>
 
 <style scoped>
+  .button {
+    float: right;
+  }
+  
+  .content > figure > img {
+    width: 64px;
+    height: 48px;
+    border-radius: 2px;
+  }
+
+  .content > p {
+    margin-left: 0.5em;
+  }
+
   .quantity {
     font-size: 14px;
     color: grey;
@@ -87,6 +102,10 @@ export default {
 
   .content {
     font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   footer > a {

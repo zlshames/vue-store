@@ -170,6 +170,12 @@
     top: 50px;
   }
 
+  .nav-right.nav-menu {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+  }
+
   @media only screen and (max-width: 768px) {
     /* Mobile */
     .cart-popover {

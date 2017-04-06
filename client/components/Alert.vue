@@ -21,15 +21,10 @@
     font-size: 16px;
   }
 
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-
   .notification {
     margin: 0 auto;
     margin-bottom: 10px;
-    width: 40%;
+    width: auto;
     animation-duration: 0.5s;
     animation-fill-mode: both;
     animation-name: fadeIn;
