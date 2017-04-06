@@ -14,9 +14,6 @@ app.use(async function (ctx, next) {
   await next()
 });
 
-const host = process.env.HOST || 'localhost'
-const port = process.env.PORT || 8080
-
-app.listen(port, host, () => {
-  console.log(`Available on http://${ host }:${ port }`)
+app.listen(process.env.PORT || 8080, () => {
+  console.log(`Available on http://localhost:${ port }`)
 })
