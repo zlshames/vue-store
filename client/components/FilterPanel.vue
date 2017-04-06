@@ -14,7 +14,6 @@
         </p>
       </div>
 
-
       <a class="panel-block no-bottom-border">
         <span class="panel-icon">
           <i class="fa fa-sort-numeric-asc"></i>
@@ -156,6 +155,10 @@
 </script>
 
 <style scoped>
+  .control.has-icon .icon {
+    z-index: 0;  
+  }
+  
   .expantion-container {
     display: flex;
     flex-direction: row;

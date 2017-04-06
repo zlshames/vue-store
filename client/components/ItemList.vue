@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  import Item from './Item'
-  import ItemModal from './ItemModal'
+  import Item from 'components/Item'
+  import ItemModal from 'components/ItemModal'
 
   export default {
     props: ['items'],

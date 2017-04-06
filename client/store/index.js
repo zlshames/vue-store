@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Helpers from '../util/Helpers'
+import Helpers from 'util/Helpers'
 import shortid from 'shortid'
 
 Vue.use(Vuex)
@@ -60,21 +60,22 @@ const actions = {
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].id == newItem.id) {
         found = true
-        break
+        cart[i].quantity = cart[i].quantity + 1
       }
     }
 
     if (found) {
       ctx.dispatch('addAlert', {
         type: 'is-warning',
-        message: 'This item is already in your cart!'
+        message: 'This item is already in your cart! Added 1 to quantity.'
       })
-
-      return
+    } else {
+      newItem.quantity = 1
+      cart.push(newItem)
     }
 
     // Add item to cart
-    cart.push(newItem)
+    
 
     // Add to localStorage (async)
     setTimeout(() => {

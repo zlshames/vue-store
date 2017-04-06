@@ -40,6 +40,16 @@
 
     <div class="nav-right nav-menu" ref="menu" @click="closeMenu">
       <router-link
+        :class="['nav-item is-tab', (page === 'checkout') ? 'is-active' : '']"
+        :to="{ name: 'checkout' }" >
+
+        <span class="icon">
+          <i class="fa fa-sign-out"></i>
+        </span>
+
+        Checkout
+      </router-link>
+      <router-link
         :class="['nav-item is-tab', (page === 'about') ? 'is-active' : '']"
         :to="{ name: 'about' }" >
 

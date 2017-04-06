@@ -15,8 +15,10 @@
               </p>
               <span class="tag is-success is-small">${{ item.price }}</span>
             </div>
-
-            <a @click="$store.dispatch('removeFromCart', item.id)" class="button is-danger is-small is-outlined">Remove</a>
+            <div class="name-row">
+              <a @click="$store.dispatch('removeFromCart', item.id)" class="button is-danger is-small is-outlined">Remove</a>
+              <p>Qty: {{ item.quantity }}</p>
+            </div>
           </div>
         </div>
       </article>
@@ -25,7 +27,7 @@
       </div>
     </div>
     <div class="cart-footer">
-        <a class="button is-info is-small is-outlined">Checkout</a>
+        <a class="button is-info is-small">Checkout</a>
       </div>
   </div>
 </template>
@@ -88,6 +90,12 @@
     font-size: 14px;
     word-wrap: break-word;
     margin-bottom: 7px;
+    color: grey;
+  }
+  
+  .name-row > a {
+    height: 20px;
+    margin-top: -5px;
   }
 
   .content > a {
@@ -98,7 +106,7 @@
     margin-left: 20px;
     margin-top: 20px;
     margin-right: 20px;
-    margin-bottom: -30px;
+    margin-bottom: -20px;
   }
 
   .popover {
