@@ -24,7 +24,7 @@
   .notification {
     margin: 0 auto;
     margin-bottom: 10px;
-    width: auto;
+    width: 40%;
     animation-duration: 0.5s;
     animation-fill-mode: both;
     animation-name: fadeIn;
