@@ -24,6 +24,9 @@
         <p>No items in your cart</p>
       </div>
     </div>
+    <div class="cart-footer">
+        <a class="button is-info is-small is-outlined">Checkout</a>
+      </div>
   </div>
 </template>
 
@@ -38,6 +41,21 @@
 </script>
 
 <style scoped>
+  .cart-footer {
+    position: absolute;
+    height: 50px;
+    bottom: 0;
+    background-color: #f5f5f5;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .cart-footer > a {
+    margin-top: 11px;
+    width: 90%;
+  }
+  
   .tag {
     align-self: flex-start;
     user-select: none;
@@ -45,7 +63,9 @@
 
   .cart-container {
     width: 100%;
-    height: 90%;
+    height: 84%;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .no-items {
@@ -82,6 +102,7 @@
   }
 
   .popover {
+    position: absolute;
     width: 300px;
     height: 300px;
     background-color: white;
@@ -91,8 +112,6 @@
     -webkit-box-shadow: 1px 1px 16px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 1px 16px -4px rgba(0,0,0,0.75);
     box-shadow: 1px 1px 16px -4px rgba(0,0,0,0.75);
-    overflow-y: auto;
-    overflow-x: hidden;
   }
 
   @media only screen and (max-width: 768px) {
