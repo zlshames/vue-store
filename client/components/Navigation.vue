@@ -170,7 +170,7 @@
     top: 50px;
   }
 
-  .nav-right.nav-menu {
+  .nav-right.nav-menu.is-active {
     animation-duration: 0.5s;
     animation-fill-mode: both;
     animation-name: fadeIn;
