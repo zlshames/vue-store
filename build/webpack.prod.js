@@ -1,7 +1,6 @@
 'use strict'
 process.env.NODE_ENV = 'production'
 
-const exec = require('child_process').execSync
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ProgressPlugin = require('webpack/lib/ProgressPlugin')
@@ -10,13 +9,14 @@ const base = require('./webpack.base')
 const pkg = require('../package')
 const _ = require('./utils')
 const config = require('./config')
+const rimraf = require('rimraf')
 
 if (config.electron) {
   // remove dist folder in electron mode
-  exec('rm -rf app/assets/')
+  rimraf.sync('app/assets/')
 } else {
   // remove dist folder in web app mode
-  exec('rm -rf dist/')
+  rimraf.sync('dist/')
   // use source-map in web app mode
   base.devtool = 'source-map'
 }
