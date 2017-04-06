@@ -15,5 +15,5 @@ app.use(async function (ctx, next) {
 });
 
 app.listen(process.env.PORT || 8080, () => {
-  console.log(`Available on http://localhost:${ port }`)
+  console.log(`Available on http://localhost:${ (process.env.PORT || 8080) }`)
 })
