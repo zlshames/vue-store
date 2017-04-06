@@ -5,6 +5,8 @@ import shortid from 'shortid'
 
 Vue.use(Vuex)
 
+const cartFields = ['id', 'name', 'description', 'image', 'price']
+
 const state = {
   items: [],
   filteredItems: [],
@@ -27,6 +29,11 @@ const mutations = {
   },
   SET_CART (state, cart) {
     state.cart = cart
+
+    // Set cart in localStorage
+    setTimeout(() => {
+      localStorage.setItem('cart', JSON.stringify(cart))
+    }, 0)
   },
   SET_CART_VISIBLE (state, visible) {
     state.cartVisible = visible
@@ -53,7 +60,7 @@ const actions = {
   },
   addToCart (ctx, item) {
     const cart = state.cart
-    const newItem = Helpers.transformObj(item, ['id', 'name', 'description', 'image', 'price'])
+    const newItem = Helpers.transformObj(item, cartFields)
 
     // If item already in cart, don't add
     let found = false
@@ -74,14 +81,6 @@ const actions = {
       cart.push(newItem)
     }
 
-    // Add item to cart
-    
-
-    // Add to localStorage (async)
-    setTimeout(() => {
-      localStorage.setItem('cart', JSON.stringify(cart))
-    }, 0)
-
     ctx.commit('SET_CART', cart)
   },
   removeFromCart ({ commit }, id) {
@@ -94,10 +93,18 @@ const actions = {
       }
     }
 
-    // Add to localStorage (async)
-    setTimeout(() => {
-      localStorage.setItem('cart', JSON.stringify(cart))
-    }, 0)
+    commit('SET_CART', cart)
+  },
+  updateCartItem ({ commit }, updatedItem) {
+    const cart = state.cart
+    const item = Helpers.transformObj(updatedItem, cartFields)
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id === item.id) {
+        cart[i] = item
+        break
+      }
+    }
 
     commit('SET_CART', cart)
   },
@@ -129,7 +136,7 @@ const actions = {
   },
   addAlert ({ commit }, alert) {
     const alerts = state.alerts
-    
+
     let found = false
     for (let i = 0; i < alerts.length; i++) {
       if (alerts[i].message === alert.message) {
@@ -137,11 +144,11 @@ const actions = {
         break;
       }
     }
-    
+
     if (found) return
-    
+
     const id = shortid.generate()
-    
+
     alerts.push({
       id: id,
       type: alert.type,

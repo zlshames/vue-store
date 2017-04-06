@@ -25,7 +25,9 @@
             </footer>
           </div>
         </div>
-        
+
+        <calculations :cart="getCart" :tax="0.05" :shipping="5" />
+
         <a class="button is-primary is-medium">Checkout</a>
       </div>
     </div>
@@ -37,11 +39,13 @@
 <script>
 import ElNav from 'components/Navigation'
 import ElFooter from 'components/Footer'
+import Calculations from 'components/Calculations'
 
 export default {
   components: {
     ElNav,
-    ElFooter
+    ElFooter,
+    Calculations
   },
   computed: {
     getCart() {
@@ -57,18 +61,18 @@ export default {
     color: grey;
     font-weight: normal;
   }
-  
+
   h3 {
     text-align: center;
     margin-bottom: 1em;
   }
-  
+
   .name-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-  
+
   .body-container {
     display: flex;
     flex-direction: column;
@@ -79,11 +83,11 @@ export default {
   .content {
     font-size: 16px;
   }
-  
+
   footer > a {
     font-size: 16px;
   }
-  
+
   .cart-container {
     width: 60%;
     max-width: 800px;
@@ -91,27 +95,27 @@ export default {
     background-color: #f5f5f5;
     padding-left: 2em;
     padding-right: 2em;
-    padding-bottom: 1em;
+    padding-bottom: 0.5em;
     padding-top: 1em;
     border-radius: 5px;
   }
-  
+
   .cart-container > a {
     float: right;
   }
-  
+
   .card-header-title {
     padding: 0.5rem;
   }
-  
+
   .card-content {
     padding: 0.75rem;
   }
-  
+
   .card-footer-item {
     padding: 0.4rem;
   }
-  
+
   .card {
     margin-bottom: 0.75em;
   }
@@ -126,11 +130,12 @@ export default {
       margin: 0;
       margin-top: 20px;
     }
-    
+
     .cart-container {
       width: 90%;
       padding-left: 0.5em;
       padding-right: 0.5em;
+      margin-bottom: 125px;
     }
   }
 
