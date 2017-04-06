@@ -5,30 +5,35 @@
     <div class="body-container" @click="$store.commit('SET_CART_VISIBLE', false)">
       <h3>Checkout</h3>
       <div class="cart-container">
-        <div v-for="item in getCart">
-          <div class="card">
-            <header class="card-header">
-              <div class="card-header-title name-row">
-                <p>{{ item.name }}</p>
-                <p class="quantity">Quantity: {{ item.quantity }}</p>
+        <div v-if="getCart.length > 0">
+          <div v-for="item in getCart">
+            <div class="card">
+              <header class="card-header">
+                <div class="card-header-title name-row">
+                  <p>{{ item.name }}</p>
+                  <p class="quantity">Quantity: {{ item.quantity }}</p>
+                </div>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  {{ item.description }}
+                  <br>
+                  <small>{{ item.post_date }}</small>
+                </div>
               </div>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                {{ item.description }}
-                <br>
-                <small>{{ item.post_date }}</small>
-              </div>
+              <footer class="card-footer">
+                <a @click="$store.dispatch('removeFromCart', item.id)" class="card-footer-item">Delete</a>
+              </footer>
             </div>
-            <footer class="card-footer">
-              <a @click="$store.dispatch('removeFromCart', item.id)" class="card-footer-item">Delete</a>
-            </footer>
           </div>
+
+          <calculations :cart="getCart" :tax="0.05" :shipping="5" />
+
+          <a class="button is-primary is-medium">Checkout</a>
         </div>
-
-        <calculations :cart="getCart" :tax="0.05" :shipping="5" />
-
-        <a class="button is-primary is-medium">Checkout</a>
+        <div v-if="getCart.length === 0" class="no-items">
+          You must have items in your cart to checkout
+        </div>
       </div>
     </div>
 
@@ -118,6 +123,12 @@ export default {
 
   .card {
     margin-bottom: 0.75em;
+  }
+
+  .no-items {
+    font-size: 20px;
+    text-align: center;
+    margin-top: -15px;
   }
 
   @media only screen and (max-width: 768px) {

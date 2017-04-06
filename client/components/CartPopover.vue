@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="cart-footer">
-      <a class="button is-info is-small">Checkout</a>
+      <router-link :to="{ name: 'checkout' }" class="button is-info is-small">Checkout</router-link>
     </div>
   </div>
 </template>
@@ -52,7 +52,7 @@
     margin-top: 4px;
     margin-right: 5px;
   }
-  
+
   .cart-footer {
     position: absolute;
     height: 50px;
@@ -62,7 +62,7 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
-  
+
   .cart-header {
     position: absolute;
     height: 30px;
@@ -72,12 +72,12 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
-  
+
   .cart-footer > a {
     margin-top: 11px;
     width: 90%;
   }
-  
+
   .tag {
     align-self: flex-start;
     user-select: none;
@@ -113,7 +113,7 @@
     margin-bottom: 7px;
     color: grey;
   }
-  
+
   .name-row > a {
     height: 20px;
     margin-top: -5px;
