@@ -1,21 +1,21 @@
 <template>
   <nav class="nav has-shadow">
     <div class="nav-left">
-      <a class="nav-item">
+      <router-link :to="{ name: 'shop' }" class="nav-item">
         <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
-      </a>
+      </router-link>
       <router-link
         :class="['nav-item is-tab', (page === 'shop') ? 'is-active' : '']"
         :to="{ name: 'shop' }">
 
-        <span class="icon">
+        <span v-if="!isMobile" class="icon">
           <i class="fa fa-usd"></i>
         </span>
 
         Shop
       </router-link>
-      <a v-if="!isMobile" class="nav-item is-tab" @click="toggleCart" ref="cartTab">
-        <span class="icon">
+      <a class="nav-item is-tab" @click="toggleCart" ref="cartTab">
+        <span v-if="!isMobile" class="icon">
           <i class="fa fa-shopping-cart"></i>
         </span>
 
@@ -39,16 +39,6 @@
     </span>
 
     <div class="nav-right nav-menu" ref="menu" @click="closeMenu">
-      <a v-if="isMobile" class="nav-item is-tab" @click="toggleCart" ref="cartTab">
-        <span class="icon">
-          <i class="fa fa-shopping-cart"></i>
-        </span>
-
-        Cart
-        <span
-          v-if="$store.getters.cart.length > 0"
-          class="tag is-danger is-small cart-count">{{ $store.getters.cart.length }}</span>
-      </a>
       <router-link
         :class="['nav-item is-tab', (page === 'checkout') ? 'is-active' : '']"
         :to="{ name: 'checkout' }" >
