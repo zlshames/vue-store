@@ -12,14 +12,14 @@
               <input v-model="name" class="input" type="text" placeholder="Your name">
             </p>
           </div>
-          
+
           <div class="field">
             <label class="label">Email</label>
             <p class="control has-icon has-icon-right">
               <input v-model="email" class="input" type="email" placeholder="Your email" value="">
             </p>
           </div>
-          
+
           <div class="field">
             <label class="label">Subject</label>
             <p class="control">
@@ -33,14 +33,14 @@
               </span>
             </p>
           </div>
-          
+
           <div class="field">
             <label class="label">Message</label>
             <p class="control">
               <textarea v-model="message" class="textarea" placeholder="Your message"></textarea>
             </p>
           </div>
-          
+
           <div class="field is-grouped">
             <p class="control">
               <button @click="submit" class="button is-primary">Submit</button>
@@ -82,18 +82,18 @@ export default {
   methods: {
     submit() {
       // SUBMIT FORM
-      
+
       this.$store.dispatch('addAlert', {
         type: 'is-success',
         message: 'Message successfully sent!'
       })
-      
+
       // Clear fields
       this.name = ''
       this.email = ''
       this.subject = 0
       this.message = ''
-    } 
+    }
   }
 }
 </script>
@@ -103,7 +103,7 @@ export default {
     margin-right: 1em;
     width: 50%;
   }
-  
+
   .body-container {
     display: flex;
     flex-direction: row;
@@ -114,14 +114,14 @@ export default {
   }
 
   .content {
-    width: 80%;
+    width: 100%;
     margin-top: 1em;
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
   }
-  
+
   .content > p {
     font-size: 16px;
     margin-left: 20px;
@@ -133,18 +133,18 @@ export default {
     .content {
       margin: 0.5em;
     }
-    
+
     .form-container {
       width: 100%;
     }
-    
+
     .form-container:first-child {
       margin-top: 0.3em;
     }
-    
+
     .content > p {
       margin-top: 1em;
-      margin-left: -10.5em;
+      margin-left: -10.4em;
     }
   }
 </style>
