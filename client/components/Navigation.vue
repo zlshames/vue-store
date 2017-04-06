@@ -166,7 +166,7 @@
   }
 
   .cart-popover {
-    position: absolute;
+    position: fixed;
     top: 50px;
   }
 
