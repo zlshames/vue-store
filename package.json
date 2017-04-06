@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "A boilerplate for an online store",
   "main": "client/index.js",
+  "entry": "server.js",
+  "engines": {
+    "node": "7.6.0"
+  },
   "scripts": {
     "start": "node server.js",
     "build": "webpack --config build/webpack.prod.js",
