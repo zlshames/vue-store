@@ -4,6 +4,9 @@
       <item :item="item" :toggleModal="toggleModal" />
       <item-modal :item="item" :ref="`modal${ item.id }`" :toggleModal="toggleModal" />
     </div>
+    <div v-if="items.length === 0" style="width: 100%;">
+      <p class="no-items">No items found!</p>
+    </div>
   </div>
 </template>
 
@@ -31,6 +34,12 @@
 </script>
 
 <style scoped>
+  .no-items {
+    text-align: center; 
+    margin-top: 2em;
+    color: grey;
+  }
+  
   .item-container {
     display: flex;
     flex-direction: row;

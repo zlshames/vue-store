@@ -1,5 +1,8 @@
 <template>
   <div class="popover">
+    <div class="cart-header">
+      <button @click="toggleCart" class="delete"></button>
+    </div>
     <div class="cart-container">
       <article v-for="item in getCart" class="media cart-item">
         <div class="media-left">
@@ -27,13 +30,14 @@
       </div>
     </div>
     <div class="cart-footer">
-        <a class="button is-info is-small">Checkout</a>
-      </div>
+      <a class="button is-info is-small">Checkout</a>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
+    props: ['toggleCart'],
     computed: {
       getCart() {
         return this.$store.getters.cart
@@ -43,6 +47,12 @@
 </script>
 
 <style scoped>
+  .delete {
+    float: right;
+    margin-top: 4px;
+    margin-right: 5px;
+  }
+  
   .cart-footer {
     position: absolute;
     height: 50px;
@@ -51,6 +61,16 @@
     width: 100%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+  }
+  
+  .cart-header {
+    position: absolute;
+    height: 30px;
+    top: 0;
+    background-color: #f5f5f5;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
   
   .cart-footer > a {
@@ -65,7 +85,8 @@
 
   .cart-container {
     width: 100%;
-    height: 84%;
+    height: 74%;
+    margin-top: 30px;
     overflow-y: auto;
     overflow-x: hidden;
   }

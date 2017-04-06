@@ -14,7 +14,7 @@
 
         Shop
       </router-link>
-      <a class="nav-item is-tab" @click="toggleCart" ref="cartTab">
+      <a v-if="!isMobile" class="nav-item is-tab" @click="toggleCart" ref="cartTab">
         <span class="icon">
           <i class="fa fa-shopping-cart"></i>
         </span>
@@ -27,8 +27,8 @@
       <Cart
         v-if="$store.getters.cartVisible"
         class="cart-popover"
-        :offset="cartOffset"
         :style="cartPosition"
+        :toggleCart="toggleCart"
       />
     </div>
 
@@ -39,6 +39,16 @@
     </span>
 
     <div class="nav-right nav-menu" ref="menu" @click="closeMenu">
+      <a v-if="isMobile" class="nav-item is-tab" @click="toggleCart" ref="cartTab">
+        <span class="icon">
+          <i class="fa fa-shopping-cart"></i>
+        </span>
+
+        Cart
+        <span
+          v-if="$store.getters.cart.length > 0"
+          class="tag is-danger is-small cart-count">{{ $store.getters.cart.length }}</span>
+      </a>
       <router-link
         :class="['nav-item is-tab', (page === 'checkout') ? 'is-active' : '']"
         :to="{ name: 'checkout' }" >
@@ -95,11 +105,13 @@
         cartPosition: {
           top: 0,
           left: 0
-        },
-        cartOffset: '10px'
+        }
       }
     },
     computed: {
+      isMobile() {
+        return window.innerWidth < 768
+      },
       page() {
         return this.$store.getters.currentPage
       }
@@ -120,9 +132,16 @@
       toggleCart() {
         const rect = this.$refs.cartTab.getBoundingClientRect()
 
-        this.cartPosition = {
-          top: (rect.top + 55) + 'px',
-          left: (window.innerWidth < 768) ? ((rect.left - 210) + 'px') : ((rect.left - 100) + 'px')
+        if (!this.isMobile) {
+          this.cartPosition = {
+            top: (rect.top + 55) + 'px',
+            left: (window.innerWidth < 768) ? ((rect.left - 210) + 'px') : ((rect.left - 100) + 'px')
+          }
+        } else {
+          this.cartPosition = {
+            top: '60px',
+            left: '20px'
+          }
         }
 
         this.$store.commit('SET_CART_VISIBLE', !this.$store.getters.cartVisible)

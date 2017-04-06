@@ -86,6 +86,7 @@ export default {
   
   .cart-container {
     width: 60%;
+    max-width: 800px;
     margin: 0 auto;
     background-color: #f5f5f5;
     padding-left: 2em;

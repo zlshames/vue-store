@@ -1,7 +1,7 @@
 <template>
   <nav class="panel">
     <div class="panel-heading expantion-container">
-      <p>Filters:</p>
+      <p>Filters:</p><p class="found">(Items: {{ getFound }})</p>
       <p><a @click="togglePanel" class="button is-small">{{ (showPanel) ? 'hide' : 'show' }}</a></p>
     </div>
     <div v-if="showPanel">
@@ -87,6 +87,9 @@
         }
 
         return tags
+      },
+      getFound() {
+        return this.$store.getters.items.length
       }
     },
     watch: {
@@ -155,6 +158,13 @@
 </script>
 
 <style scoped>
+  .found {
+    font-size: 12px;
+    color: grey;
+    align-self: center;
+    margin-left: -4em;
+  }
+  
   .control.has-icon .icon {
     z-index: 0;  
   }
@@ -195,5 +205,12 @@
 
   a.panel-block:hover, label.panel-block:hover {
     background-color: inherit;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    /* Mobile */
+    .found {
+      margin-left: -10em;
+    }
   }
 </style>
