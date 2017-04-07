@@ -1,7 +1,7 @@
 {
-  "name": "store-boilerplate",
+  "name": "vue-store",
   "version": "0.1.0",
-  "description": "A boilerplate for an online store",
+  "description": "A boilerplate for an online web-storemade with VueJS",
   "main": "client/index.js",
   "engines": {
     "node": "7.6.0"
