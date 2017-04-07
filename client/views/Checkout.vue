@@ -53,8 +53,12 @@ export default {
     ElFooter,
     Calculations
   },
+  updated() {
+    console.log("updated")
+  },
   computed: {
     getCart() {
+      console.log("CART CHANGED")
       return this.$store.getters.cart
     }
   },

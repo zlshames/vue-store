@@ -18,17 +18,17 @@ const state = {
 
 const mutations = {
   SET_FILTERED_ITEMS (state, items) {
-    state.filteredItems = items
+    state.filteredItems = [...items]
   },
   SET_ITEMS (state, items) {
-    state.items = items
-    state.filteredItems = items
+    state.items = [...items]
+    state.filteredItems = [...items]
   },
   RESET_FILTER (state) {
     state.filteredItems = state.items;
   },
   SET_CART (state, cart) {
-    state.cart = cart
+    state.cart = [...cart]
 
     // Set cart in localStorage
     setTimeout(() => {
