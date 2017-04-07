@@ -4,7 +4,11 @@ A responsive web-store boilerplate created in Vue2
 ### Example
 A running version of this can be found at: https://vue-store.herokuapp.com/
 
-![example](https://i.imgur.com/UNaXHsi.png "Up and running")
+#### Browser
+![browser](https://i.imgur.com/UNaXHsi.png "Browser")
+
+#### Mobile
+![mobile](https://i.imgur.com/1PWxsKT.png "Mobile")
 
 #### To start:
 
