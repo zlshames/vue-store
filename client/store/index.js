@@ -5,7 +5,7 @@ import shortid from 'shortid'
 
 Vue.use(Vuex)
 
-const cartFields = ['id', 'name', 'description', 'image', 'price']
+const cartFields = ['id', 'name', 'description', 'image', 'price', 'quantity']
 
 const state = {
   items: [],

@@ -11,7 +11,7 @@
               <header class="card-header">
                 <div class="card-header-title name-row">
                   <p>{{ item.name }}</p>
-                  <p class="quantity">Quantity: {{ item.quantity }}</p>
+                  <div class="quantity-label">Qty: <input class="input quantity-input" type="number" @change="(e) => quantityChange(e, item)" :value="item.quantity" min="1" max="99" number /></div>
                 </div>
               </header>
               <div class="card-content">
@@ -57,15 +57,44 @@ export default {
     getCart() {
       return this.$store.getters.cart
     }
+  },
+  methods: {
+    quantityChange(e, item) {
+      const quantity = Number(e.target.value)
+
+      if (quantity === 0) return
+
+      const updated = item
+
+      updated.quantity = quantity
+      this.$store.dispatch('updateCartItem', updated)
+    }
   }
 }
 </script>
 
 <style scoped>
+  .quantity-input {
+    height: 25px;
+    width: 50px;
+    font-size: 12px;
+  }
+
+  .quantity-label {
+    font-size: 12px;
+    line-height: 23px;
+    color: grey;
+    font-weight: normal;
+  }
+
   .button {
     float: right;
   }
-  
+
+  .content > figure {
+    min-width: 64px;
+  }
+
   .content > figure > img {
     width: 64px;
     height: 48px;
@@ -74,12 +103,6 @@ export default {
 
   .content > p {
     margin-left: 0.5em;
-  }
-
-  .quantity {
-    font-size: 14px;
-    color: grey;
-    font-weight: normal;
   }
 
   h3 {

@@ -6,7 +6,7 @@
     <div class="cart-container">
       <article v-for="item in getCart" class="media cart-item">
         <div class="media-left">
-          <figure class="image is-64x64">
+          <figure class="image">
             <img :src="item.image" alt="Image">
           </figure>
         </div>
@@ -20,7 +20,7 @@
             </div>
             <div class="name-row">
               <a @click="$store.dispatch('removeFromCart', item.id)" class="button is-danger is-small is-outlined">Remove</a>
-              <p>Qty: {{ item.quantity }}</p>
+              <div class="quantity-label">Qty: <input class="input quantity-input" type="number" @change="(e) => quantityChange(e, item)" :value="item.quantity" min="1" max="99" number /></div>
             </div>
           </div>
         </div>
@@ -42,11 +42,57 @@
       getCart() {
         return this.$store.getters.cart
       }
+    },
+    methods: {
+      quantityChange(e, item) {
+        const quantity = Number(e.target.value)
+
+        if (quantity === 0) return
+
+        const updated = item
+
+        updated.quantity = quantity
+        this.$store.dispatch('updateCartItem', updated)
+      }
     }
   }
 </script>
 
 <style scoped>
+  .name-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .name-row > p {
+    font-size: 14px;
+    word-wrap: break-word;
+    margin-bottom: 7px;
+  }
+
+  .name-row > a {
+    height: 25px;
+  }
+
+  .image > img {
+    width: 64px;
+    height: 52px;
+  }
+
+  .quantity-label {
+    font-size: 12px;
+    line-height: 23px;
+    color: grey;
+  }
+
+  .quantity-input {
+    height: 25px;
+    width: 50px;
+    font-size: 12px;
+  }
+
   .delete {
     float: right;
     margin-top: 4px;
@@ -100,25 +146,6 @@
     align-items: center;
   }
 
-  .name-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .name-row > p {
-    font-size: 14px;
-    word-wrap: break-word;
-    margin-bottom: 7px;
-    color: grey;
-  }
-
-  .name-row > a {
-    height: 20px;
-    margin-top: -5px;
-  }
-
   .content > a {
     height: 20px;
   }
@@ -127,7 +154,7 @@
     margin-left: 20px;
     margin-top: 20px;
     margin-right: 20px;
-    margin-bottom: -20px;
+    margin-bottom: 20px;
   }
 
   .popover {
